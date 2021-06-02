@@ -1,2 +1,29 @@
-21.06.21 C++ 배열/포인터 정리
+// 21.06.21 C++ 배열/포인터 정리
+
+
+#include <stdio.h>
+#include <iostream>
+#define MAX (15)
+
+
+char  (*foo())[MAX][MAX][MAX] // TODO... return type of foo
+{
+    // TODO ... type of arr
+    static char arr[MAX][MAX][MAX] =
+    {
+        {
+            {"Hey man"},
+            {"Hello world"},
+            {"Hello cpp"},
+            {"HelloCworld"},
+            {"Hello CProg"},
+        },
+        {
+            {"Good Morning"},
+            {"Good Evening"},
+        },
+        {},
+    };
+    return &arr;
+}
 
