@@ -6,13 +6,61 @@ C#, VB, Perl, Swift, Prolog, Javascript, Pascal, HTML, CSS, JS
 Code, Compile, Run and Debug online from anywhere in world.
 
 *******************************************************************************/
-
 #include <stdio.h>
+
+
 
 // func
 int iFunc(){return 0;};
 char cFunc(){return '0';};
 double dFunc(){return 0.0;};
+
+// pointer
+int *gIPointer;
+char *gCPointer;
+double *gDPointer;
+
+// func 
+int *iPFunc(){
+    return gIPointer;
+};
+
+char *cPFunf(){
+    return gCPointer;
+};
+
+double *dPFunc(){
+    return gDPointer;   
+};
+
+// return type is, array pointer 
+int (*iPRetFunc())[8]{
+    int (*iPArray)[8];
+    return iPArray;
+}
+
+char (*cPRetFunc())[8]{
+    char (*cPArray)[8];
+    return cPArray;
+}
+
+double (*dPRetFunc())[8]{
+    double (*dPArray)[8];
+    return dPArray;
+}
+
+// param type is, array pointer
+void iPParamFunc(int (*ptr)[8]){
+    int (*_iArrPointer)[8] = ptr;
+}
+
+void cPParamFunc(char (*ptr)[8]){
+    char (*cArrPointer)[8] = ptr;
+}
+
+void dPParamFunc(double (*ptr)[8]){
+    double (*dArrPointer)[8] = ptr;
+}
 
 int main()
 {
@@ -70,6 +118,18 @@ int main()
     double (*dPFArray[8])() = {pDFunc};
     
     
+    
+    // return type is, array pointer 
+    pIArray = iPRetFunc();
+    pCArray = cPRetFunc();
+    pDArray = dPRetFunc();
+    
+    iPParamFunc(pIArray);
+    cPParamFunc(pCArray);
+    dPParamFunc(pDArray);
+    
+    
     printf("Hello World");
     return 0;
 }
+
