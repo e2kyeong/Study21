@@ -7,7 +7,6 @@ Code, Compile, Run and Debug online from anywhere in world.
 
 *******************************************************************************/
 
-
 #include <stdio.h>
 
 // func
@@ -18,12 +17,12 @@ double dFunc(){return 0.0;};
 int main()
 {
     
-    // value
+    // 'value'
     int iValue = 0;
     char cValue = 0;
     double dValue = 0;
     
-    // pointer
+    // 'pointer'
     int *iPointer = nullptr;
     char *cPointer = nullptr;
     double *dPointer = nullptr;
@@ -32,12 +31,12 @@ int main()
     cPointer = &cValue;
     dPointer = &dValue;
     
-    // array
+    // 'array'
     int iArray[8] = {0,1,2,};
     char cArray[8] = {'0','1','2'};
     double dArray[8] = {0.0,1.0,2.0};
     
-    // array pointer
+    // array 'pointer'
     int (*pIArray)[8] = nullptr;          // array pointer
     char (*pCArray)[8] = nullptr;
     double (*pDArray)[8] = nullptr;
@@ -46,12 +45,12 @@ int main()
     pCArray = &cArray;
     pDArray = &dArray;
     
-    // pointer array
+    // pointer 'array'
     int *iArrPointer[8] = {iPointer};
     char *cArrPointer[8] = {cPointer};
     double *dArrPointer[8] = {dPointer};
     
-    // func Pointer
+    // func 'Pointer'
     int (*pIFunc)() = nullptr;
     char (*pCFunc)() = nullptr;
     double (*pDFunc)() = nullptr;
@@ -65,7 +64,7 @@ int main()
     //char (cFArray[8])();
     //double (dFArray[8])();
     
-    // func pointer array
+    // func pointer 'array'
     int (*iPFArray[8])() = {pIFunc};
     char (*cPFArray[8])() = {pCFunc};
     double (*dPFArray[8])() = {pDFunc};
