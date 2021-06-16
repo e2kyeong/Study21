@@ -1,0 +1,71 @@
+
+#include <algorithm>
+#include <stdio.h>
+#include <vector>
+#include <string>
+#include <string.h>
+#include <iostream>
+
+using namespace std;
+struct People
+{
+	string name;
+	People(string n)
+	{
+		this->name = n;
+	}
+};
+
+class Peoples
+{
+public:
+	char* name;
+	Peoples(string n)
+	{
+		this->name = new char[n.size() + 1]{ 0, };
+		memcpy(name, n.c_str(), n.size());
+	}
+	bool operator==(const Peoples &p) {
+		return (strcmp(this->name, p.name) == 0);
+	}
+};
+vector<People*> v;
+vector<Peoples> v2;
+
+bool ff(People *a) {
+	return true;
+}
+
+int main()
+{
+	v.push_back(new People("abcde"));
+	v2.push_back(Peoples("abcde"));
+
+	bool (*funcP)(People *a) = ff;
+
+	{
+
+		// auto i = find_if(v.begin(), v.end(), [](People *a) {return a->name == "abcde"; });
+		auto i = find_if(v.begin(), v.end(), funcP);
+		if (i != v.end())
+		{
+			cout << "success" << endl;
+		}
+		else
+		{
+			cout << "fail" << endl;
+		}
+	}
+	//{
+	//	auto i = find(v2.begin(), v2.end(), … "abcde");
+	//	if (i != v.end())
+	//	{
+	//		cout << "success" << endl;
+	//	}
+	//	else
+	//	{
+	//		cout << "fail" << endl;
+	//	}
+	//}
+	return 0;
+}
