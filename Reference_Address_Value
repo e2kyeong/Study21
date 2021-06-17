@@ -1,0 +1,133 @@
+// TODO:  0617
+// 1. 구조체 만들어서,ㅊ
+// 2. 생성자 및 연산자를 만들어 로깅
+// 3. swap 함수를 만드는데 call by value, call by reference, call by address 로 만든다 .( 3개)
+// 4. 실행하고 타이밍 구경.
+// 5. mc 마무으리 
+
+#include <iostream>
+
+using namespace std;
+
+// TODO: 왜, 호출되지도 않는 함수를 delete 하면 뭐라하는가?
+// answer: 
+
+
+struct something {
+	something() {
+		cout << __func__ << endl;
+	};
+	// something() = default;
+	// something(something &&) = delete;
+	something(something &&) {	 // move 생성자
+		cout << "something(something &&)" << endl;
+	}
+	something(int i) {
+		cout << i << endl;
+	}
+	something & operator = (const something &) {
+		cout << "operator =&" << endl;
+		return *this; }
+	something & operator = (something &&) {	// move 대입연산자
+		cout << "operator =&&" << endl;
+		return *this;
+	}
+	//something(const something &) {
+	//	cout << "something(const something &)" << endl;
+	//};
+	something(const something &) = delete;
+	~something(){
+		cout << "~something" << endl;
+	}
+};
+
+
+// TODO:  0617
+// 1. 구조체 만들어서,
+// 2. 생성자 및 연산자를 만들어 로깅
+// 3. swap 함수를 만드는데 call by value, call by reference, call by address 로 만든다 .( 3개)
+// 4. 실행하고 타이밍 구경.
+// 5. mc 마무으리 
+
+struct CallBySomething {
+	
+	// instacne
+	CallBySomething() {
+		cout << "CallBySomething()" << endl;
+	};
+	~CallBySomething() {
+		cout << "~CallBySomething()" << endl;
+	}
+	// copy
+	CallBySomething & operator =(const CallBySomething & c) {
+		*this = c;
+		cout << "& operator " << endl;
+		return *this;
+	}
+	template<class _T>
+	void SwapByAdress(_T *a, _T *b) {
+		_T tmp = *a;
+		*a = *b;
+		*b = tmp;
+	}
+	template<class _T>
+	void SwapByReference(_T &a, _T &b) {
+		_T tmp = a;
+		a = b;
+		b = tmp;
+	}
+	// impossible;
+	template<class _T>
+	void SwapByValue(_T a, _T b) {
+
+	}
+};
+
+
+//struct dkanrjsk {
+//	inline bool operator () (People *p) { return p->name == "abcde"; }
+//};
+
+struct dkanrjsk {
+	dkanrjsk operator << (const char *a) { return *this; };
+};
+
+void SWAP(int &a, int &b) {
+	int tmp = a;
+	a = b;
+	b = tmp;
+}
+
+// call by value, call by address, call by reference.
+
+int main() {
+	// 이게 무엇을 의미하는가.
+	// something a = something(); //something() == temporary instance
+	// something (1);
+
+
+
+	cout << "main" << endl;
+	CallBySomething cc = CallBySomething();
+
+	int a = 1;
+	int b = 2;
+	int *pA = &a;
+	int *pB = &b;
+
+	cc.SwapByAdress(pA, pB);
+	cout << a << " SwapByAdress " << b << endl;
+
+	a = 1;
+	b = 2;
+
+	cc.SwapByReference(a, b);
+	cout << a << " SwapByReference " << b << endl;
+
+	a = 1;
+	b = 2;
+
+
+	cout << "return" << endl;
+	return 0;
+}
